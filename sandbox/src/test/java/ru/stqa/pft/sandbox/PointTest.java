@@ -3,8 +3,6 @@ package ru.stqa.pft.sandbox;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.nio.channels.Pipe;
-
 public class PointTest {
 
     @Test
