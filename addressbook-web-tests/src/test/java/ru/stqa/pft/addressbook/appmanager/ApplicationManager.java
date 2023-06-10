@@ -21,6 +21,7 @@ public class ApplicationManager {
         groupHelper = new GroupHelper(driver);
         navigationHelper = new NavigationHelper(driver);
         sessionHelper = new SessionHelper(driver);
+        driver.get("http://localhost/addressbook/index.php");
         sessionHelper.login("admin", "secret");
     }
 
