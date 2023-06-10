@@ -12,11 +12,15 @@ public class GroupHelper {
     }
 
     public void returnToGroupPage() {
-        driver.findElement(By.linkText("group page")).click();
+        click(By.linkText("group page"));
+    }
+
+    private void click(By locator) {
+        driver.findElement(locator).click();
     }
 
     public void submitGroupCreation() {
-        driver.findElement(By.name("submit")).click();
+        click(By.name("submit"));
     }
 
     public void fillGroupForm(GroupData groupData) {
@@ -26,20 +30,20 @@ public class GroupHelper {
     }
 
     private void type(By locator, String text) {
-        driver.findElement(locator).click();
+        click(locator);
         driver.findElement(locator).clear();
         driver.findElement(locator).sendKeys(text);
     }
 
     public void initGroupCreation() {
-        driver.findElement(By.name("new")).click();
+        click(By.name("new"));
     }
 
     public void deleteSelectedGroups() {
-        driver.findElement(By.name("delete")).click();
+        click(By.name("delete"));
     }
 
     public void selectGroup() {
-        driver.findElement(By.name("selected[]")).click();
+        click(By.name("selected[]"));
     }
 }
