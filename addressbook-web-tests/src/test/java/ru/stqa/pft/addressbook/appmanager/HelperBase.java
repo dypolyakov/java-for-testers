@@ -27,9 +27,9 @@ public class HelperBase {
         }
     }
 
-    public boolean isElementPresent(By by) {
+    public boolean isElementPresent(By locator) {
         try {
-            driver.findElement(by);
+            driver.findElement(locator);
             return true;
         } catch (NoSuchElementException e) {
             return false;
