@@ -13,8 +13,10 @@ public class ContactModificationTest extends TestBase {
                 "Pupkin",
                 "Vassya",
                 "+70987654321",
-                "vasya@pupkin.ru"
-        ));
+                "vasya@pupkin.ru",
+                null
+        ),
+                false);
         app.getContactHelper().submitContactModification();
         app.getContactHelper().returnToHomePage();
     }

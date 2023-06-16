@@ -14,8 +14,10 @@ public class ContactCreationTest extends TestBase {
                 "Polyakov",
                 "DimQA",
                 "+71234567890",
-                "dimqa@dimqa.com"
-        ));
+                "dimqa@dimqa.com",
+                "group_test"
+        ),
+                true);
         app.getContactHelper().submitContactCreation();
         app.getContactHelper().returnToHomePage();
     }
