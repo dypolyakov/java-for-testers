@@ -26,7 +26,9 @@ public class ContactHelper extends HelperBase {
         type(By.name("mobile"), contactData.getPhoneNumber());
         type(By.name("email"), contactData.getEmail());
         if (creation) {
-            new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            if (contactData.getGroup() != null) {
+                new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            }
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
@@ -58,7 +60,7 @@ public class ContactHelper extends HelperBase {
 
     public void createContact(ContactData data, boolean creation) {
         initContactCreation();
-        fillContactForm(data, true);
+        fillContactForm(data, creation);
         submitContactCreation();
         returnToHomePage();
     }

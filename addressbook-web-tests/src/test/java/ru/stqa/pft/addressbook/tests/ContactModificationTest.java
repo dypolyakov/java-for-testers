@@ -14,8 +14,7 @@ public class ContactModificationTest extends TestBase {
                             "Polyakov",
                             "DimQA",
                             "+71234567890",
-                            "dimqa@dimqa.com",
-                            "group_test"
+                            "dimqa@dimqa.com"
                     ),
                     true);
         }
