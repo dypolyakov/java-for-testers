@@ -15,8 +15,7 @@ public class ContactModificationTest extends TestBase {
                             "DimQA",
                             "+71234567890",
                             "dimqa@dimqa.com"
-                    ),
-                    true);
+                    ));
         }
         app.getContactHelper().initContactModification();
         app.getContactHelper().fillContactForm(new ContactData(

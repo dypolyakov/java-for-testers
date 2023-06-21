@@ -15,8 +15,7 @@ public class ContactDeletionTest extends TestBase {
                             "DimQA",
                             "+71234567890",
                             "dimqa@dimqa.com"
-                    ),
-                    true);
+                    ));
         }
         app.getContactHelper().selectContact();
         app.getContactHelper().deleteSelectedContacts();
