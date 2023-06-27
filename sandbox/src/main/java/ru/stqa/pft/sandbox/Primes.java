@@ -17,4 +17,13 @@ public class Primes {
         }
         return number == i;
     }
+
+    public static boolean isPrime(long number) {
+        for (long i = 2; i < number; i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
