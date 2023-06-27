@@ -26,4 +26,14 @@ public class Primes {
         }
         return true;
     }
+
+    public static boolean isPrimeFast(int number) {
+        int m = (int) Math.sqrt(number);
+        for (int i = 2; i < m; i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

@@ -20,4 +20,9 @@ public class PrimeTests {
         long number = Integer.MAX_VALUE;
         Assert.assertTrue(Primes.isPrime(number));
     }
+
+    @Test
+    public void testPrimeFast() {
+        Assert.assertTrue(Primes.isPrimeFast(Integer.MAX_VALUE));
+    }
 }
