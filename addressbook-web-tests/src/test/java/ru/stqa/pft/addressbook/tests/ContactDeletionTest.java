@@ -4,7 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-import java.util.Comparator;
 import java.util.List;
 
 public class ContactDeletionTest extends TestBase {
@@ -34,9 +33,6 @@ public class ContactDeletionTest extends TestBase {
         Assert.assertEquals(before.size() - 1, after.size());
 
         before.remove(0);
-        Comparator<? super ContactData> byLastName = Comparator.comparing(ContactData::getLastName);
-        before.sort(byLastName);
-        after.sort(byLastName);
 
         Assert.assertEquals(before, after);
 
