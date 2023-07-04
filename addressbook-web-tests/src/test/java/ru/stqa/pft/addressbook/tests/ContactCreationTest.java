@@ -16,7 +16,7 @@ public class ContactCreationTest extends TestBase {
 
         app.goTo().groupPage();
         if (!app.group().isThereAGroup(group)) {
-            app.group().create(new GroupData(group, "header", "footer"));
+            app.group().create(new GroupData().withName(group).withHeader("header").withFooter("footer"));
         }
         app.goTo().goToHomePage();
 
