@@ -14,11 +14,11 @@ public class ContactCreationTest extends TestBase {
     public void testContactCreation() {
         String group = "group_test";
 
-        app.getNavigationHelper().goToGroupPage();
-        if (!app.getGroupHelper().isThereAGroup(group)) {
-            app.getGroupHelper().createGroup(new GroupData(group, "header", "footer"));
+        app.goTo().groupPage();
+        if (!app.group().isThereAGroup(group)) {
+            app.group().create(new GroupData(group, "header", "footer"));
         }
-        app.getNavigationHelper().goToHomePage();
+        app.goTo().goToHomePage();
 
         List<ContactData> before = app.getContactHelper().getContactList();
 
