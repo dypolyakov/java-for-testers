@@ -4,26 +4,21 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class GroupCreationTest extends TestBase {
 
     @Test
     public void testGroupCreation() {
         app.goTo().groupPage();
-        List<GroupData> before = app.group().list();
+        Set<GroupData> before = app.group().all();
         GroupData group = new GroupData().withName("group_test");
         app.group().create(group);
-        List<GroupData> after = app.group().list();
+        Set<GroupData> after = app.group().all();
         Assert.assertEquals(before.size() + 1, after.size());
-        Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);
 
-        group.setId(after.stream().max(byId).get().getId());
+        group.withId(after.stream().mapToInt(GroupData::getId).max().getAsInt());
         before.add(group);
-
-        before.sort(byId);
-        after.sort(byId);
 
         Assert.assertEquals(before, after);
     }

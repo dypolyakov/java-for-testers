@@ -69,8 +69,4 @@ public class GroupData {
                 ", name='" + name + '\'' +
                 '}';
     }
-
-    public void setId(int max) {
-        this.id = max;
-    }
 }
