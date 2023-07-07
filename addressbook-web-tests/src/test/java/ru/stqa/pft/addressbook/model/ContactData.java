@@ -129,10 +129,7 @@ public class ContactData {
 
         if (id != that.id) return false;
         if (!Objects.equals(firstName, that.firstName)) return false;
-        if (!Objects.equals(lastName, that.lastName)) return false;
-        if (!Objects.equals(address, that.address)) return false;
-        if (!Objects.equals(homePhone, that.homePhone)) return false;
-        return Objects.equals(email, that.email);
+        return Objects.equals(lastName, that.lastName);
     }
 
     @Override
@@ -140,9 +137,6 @@ public class ContactData {
         int result = id;
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (address != null ? address.hashCode() : 0);
-        result = 31 * result + (homePhone != null ? homePhone.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
         return result;
     }
 }
