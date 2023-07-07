@@ -28,7 +28,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("lastname"), contactData.getLastName());
         type(By.name("address"), contactData.getAddress());
         type(By.name("mobile"), contactData.getHomePhone());
-        type(By.name("email"), contactData.getEmail());
+        type(By.name("email"), contactData.getFirstEmail());
         if (creation) {
             if (contactData.getGroup() != null) {
                 new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
@@ -91,20 +91,23 @@ public class ContactHelper extends HelperBase {
     public Contacts all() {
         Contacts contacts = new Contacts();
         List<WebElement> elements = driver.findElements(By.name("entry"));
+
         for (WebElement element : elements) {
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
             String lastName = element.findElement(By.xpath(".//td[2]")).getText();
             String firstName = element.findElement(By.xpath(".//td[3]")).getText();
             String address = element.findElement(By.xpath(".//td[4]")).getText();
-            String email = element.findElement(By.xpath(".//td[5]")).getText();
+            String allEmails = element.findElement(By.xpath(".//td[5]")).getText();
             String allPhones = element.findElement(By.xpath(".//td[6]")).getText();
+
             ContactData contact = new ContactData()
                     .withId(id)
                     .withLastName(lastName)
                     .withFirstName(firstName)
                     .withAddress(address)
-                    .withEmail(email)
+                    .withAllEmails(allEmails)
                     .withAllPhones(allPhones);
+
             contacts.add(contact);
         }
         return contacts;
@@ -119,6 +122,9 @@ public class ContactHelper extends HelperBase {
         String homePhone = driver.findElement(By.name("home")).getAttribute("value");
         String mobilePhone = driver.findElement(By.name("mobile")).getAttribute("value");
         String workPhone = driver.findElement(By.name("work")).getAttribute("value");
+        String firstEmail = driver.findElement(By.name("email")).getAttribute("value");
+        String secondEmail = driver.findElement(By.name("email2")).getAttribute("value");
+        String thirdEmail = driver.findElement(By.name("email3")).getAttribute("value");
 
         driver.navigate().back();
 
@@ -129,6 +135,9 @@ public class ContactHelper extends HelperBase {
                 .withAddress(address)
                 .withHomePhone(homePhone)
                 .withMobilePhone(mobilePhone)
-                .withWorkPhone(workPhone);
+                .withWorkPhone(workPhone)
+                .withFirstEmail(firstEmail)
+                .withSecondEmail(secondEmail)
+                .withThirdEmail(thirdEmail);
     }
 }
