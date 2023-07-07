@@ -84,10 +84,6 @@ public class ContactHelper extends HelperBase {
         returnToHomePage();
     }
 
-    public boolean isThereAContact() {
-        return isElementPresent(By.name("selected[]"));
-    }
-
     public Contacts all() {
         Contacts contacts = new Contacts();
         List<WebElement> elements = driver.findElements(By.name("entry"));
