@@ -3,7 +3,6 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -15,12 +14,16 @@ public class ContactPhoneTest extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        app.goTo().groupPage();
-        String group = "group_test";
-        if (!app.group().isThereAGroup(group)) {
-            app.group().create(new GroupData().withName(group).withHeader("header").withFooter("footer"));
-        }
         app.goTo().homePage();
+        if (app.contact().all().size() == 0) {
+            app.contact().create(new ContactData()
+                    .withFirstName("Dmitry")
+                    .withLastName("Polyakov")
+                    .withAddress("Пушкина 24")
+                    .withHomePhone("+71234567890")
+                    .withFirstEmail("dimqa@dimqa.com")
+            );
+        }
     }
 
     @Test
