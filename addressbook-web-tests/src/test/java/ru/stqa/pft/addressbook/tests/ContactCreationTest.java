@@ -27,11 +27,11 @@ public class ContactCreationTest extends TestBase {
     public void testContactCreation() {
         Contacts before = app.contact().all();
         ContactData contact = new ContactData()
-                .withFirstName("Dmitry")
-                .withLastName("Polyakov")
-                .withAddress("Пушкина 24")
-                .withHomePhone("+71234567890")
-                .withFirstEmail("dimqa@dimqa.com")
+                .withFirstName("Гарри")
+                .withLastName("Поттер")
+                .withAddress("Тисовая, 4")
+                .withHomePhone("+42779 768837")
+                .withFirstEmail("harry@potter.com")
                 .withGroup(group);
 
         app.contact().create(contact);

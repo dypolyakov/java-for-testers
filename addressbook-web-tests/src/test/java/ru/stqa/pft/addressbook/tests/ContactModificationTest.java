@@ -16,11 +16,11 @@ public class ContactModificationTest extends TestBase {
         app.goTo().homePage();
         if (app.contact().all().size() == 0) {
             app.contact().create(new ContactData()
-                    .withFirstName("Dmitry")
-                    .withLastName("Polyakov")
-                    .withAddress("Пушкина 24")
-                    .withHomePhone("+71234567890")
-                    .withFirstEmail("dimqa@dimqa.com")
+                    .withFirstName("Гарри")
+                    .withLastName("Поттер")
+                    .withAddress("Тисовая, 4")
+                    .withHomePhone("+42779 768837")
+                    .withFirstEmail("harry@potter.com")
             );
         }
     }
@@ -31,11 +31,11 @@ public class ContactModificationTest extends TestBase {
 
         ContactData contact = new ContactData()
                 .withId(modifiedContact.getId())
-                .withFirstName("Vasya")
-                .withLastName("Pupkin")
-                .withAddress("Ленина 1")
-                .withHomePhone("+79876543210")
-                .withFirstEmail("vasya@pupkin.ru");
+                .withFirstName("Уолтер")
+                .withLastName("Уайт")
+                .withAddress("Негра Арройо Лэйн, 308")
+                .withHomePhone("+925837 94483")
+                .withFirstEmail("walter@white.com");
 
         app.contact().modify(contact);
         Contacts after = app.contact().all();

@@ -17,11 +17,11 @@ public class ContactEmailTest extends TestBase {
         app.goTo().homePage();
         if (app.contact().all().size() == 0) {
             app.contact().create(new ContactData()
-                    .withFirstName("Dmitry")
-                    .withLastName("Polyakov")
-                    .withAddress("Пушкина 24")
-                    .withHomePhone("+71234567890")
-                    .withFirstEmail("dimqa@dimqa.com")
+                    .withFirstName("Гарри")
+                    .withLastName("Поттер")
+                    .withAddress("Тисовая, 4")
+                    .withHomePhone("+42779 768837")
+                    .withFirstEmail("harry@potter.com")
             );
         }
     }
