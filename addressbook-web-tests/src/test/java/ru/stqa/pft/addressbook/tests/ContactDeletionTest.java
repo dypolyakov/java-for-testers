@@ -19,7 +19,7 @@ public class ContactDeletionTest extends TestBase {
                     .withFirstName("Dmitry")
                     .withLastName("Polyakov")
                     .withAddress("Пушкина 24")
-                    .withPhoneNumber("+71234567890")
+                    .withHomePhone("+71234567890")
                     .withEmail("dimqa@dimqa.com")
             );
         }
