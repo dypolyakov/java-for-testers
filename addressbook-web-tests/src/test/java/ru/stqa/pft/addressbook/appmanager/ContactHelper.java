@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class ContactHelper extends HelperBase {
     public void fillContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getFirstName());
         type(By.name("lastname"), contactData.getLastName());
-        type(By.name("nickname"), contactData.getNickName());
+        type(By.name("address"), contactData.getAddress());
         type(By.name("mobile"), contactData.getPhoneNumber());
         type(By.name("email"), contactData.getEmail());
         if (creation) {
@@ -42,8 +43,8 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("add new"));
     }
 
-    public void selectContact() {
-        click(By.name("selected[]"));
+    public void selectContact(int id) {
+        click(By.cssSelector("input[value='" + id + "']"));
     }
 
     public void deleteSelectedContacts() {
@@ -54,18 +55,33 @@ public class ContactHelper extends HelperBase {
         driver.switchTo().alert().accept();
     }
 
-    public void initContactModification() {
-        click(By.xpath("//img[@alt='Edit']"));
+    public void initContactModification(int id) {
+        click(By.xpath("//a[@href='edit.php?id=" + id + "']/img"));
     }
+
 
     public void submitContactModification() {
         click(By.name("update"));
     }
 
-    public void createContact(ContactData data) {
+    public void create(ContactData data) {
         initContactCreation();
         fillContactForm(data, true);
         submitContactCreation();
+        returnToHomePage();
+    }
+
+    public void modify(ContactData contact) {
+        initContactModification(contact.getId());
+        fillContactForm(contact, false);
+        submitContactModification();
+        returnToHomePage();
+    }
+
+    public void delete(ContactData contact) {
+        selectContact(contact.getId());
+        deleteSelectedContacts();
+        acceptAlert();
         returnToHomePage();
     }
 
@@ -80,6 +96,28 @@ public class ContactHelper extends HelperBase {
             String firstName = element.findElement(By.xpath(".//td[3]")).getText();
             String lastName = element.findElement(By.xpath(".//td[2]")).getText();
             ContactData contact = new ContactData(firstName, lastName, null, null, null);
+            contacts.add(contact);
+        }
+        return contacts;
+    }
+
+    public Contacts all() {
+        Contacts contacts = new Contacts();
+        List<WebElement> elements = driver.findElements(By.name("entry"));
+        for (WebElement element : elements) {
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            String lastName = element.findElement(By.xpath(".//td[2]")).getText();
+            String firstName = element.findElement(By.xpath(".//td[3]")).getText();
+            String address = element.findElement(By.xpath(".//td[4]")).getText();
+            String email = element.findElement(By.xpath(".//td[5]")).getText();
+            String phone = element.findElement(By.xpath(".//td[6]")).getText();
+            ContactData contact = new ContactData()
+                    .withId(id)
+                    .withLastName(lastName)
+                    .withFirstName(firstName)
+                    .withAddress(address)
+                    .withEmail(email)
+                    .withPhoneNumber(phone);
             contacts.add(contact);
         }
         return contacts;
