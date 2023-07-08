@@ -9,5 +9,5 @@ dependencies {
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.10.0'
     testImplementation 'org.hamcrest:hamcrest:2.2'
     implementation 'com.beust:jcommander:1.82'
-
+    implementation 'com.thoughtworks.xstream:xstream:1.4.20'
 }
