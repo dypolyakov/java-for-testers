@@ -1,13 +1,14 @@
 package ru.stqa.pft.addressbook.tests;
 
+import com.thoughtworks.xstream.XStream;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.equalTo;
@@ -16,15 +17,18 @@ public class GroupCreationTest extends TestBase {
 
     @DataProvider
     public Iterator<Object[]> validGroups() throws IOException {
-        List<Object[]> groups = new ArrayList<>();
-        BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/groups.csv"));
+        BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/groups.xml"));
+        String xml = "";
         String line = reader.readLine();
         while (line != null) {
-            String[] split = line.split(";");
-            groups.add(new Object[] {new GroupData().withName(split[0]).withHeader(split[1]).withFooter(split[2])});
+            xml += line;
             line = reader.readLine();
         }
-        return groups.iterator();
+        XStream xstream = new XStream();
+        xstream.processAnnotations(GroupData.class);
+        xstream.allowTypes(new Class[]{GroupData.class});
+        List<GroupData> groups = (List<GroupData>) xstream.fromXML(xml);
+        return groups.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
     }
 
     @Test(dataProvider = "validGroups")
@@ -34,8 +38,7 @@ public class GroupCreationTest extends TestBase {
         app.group().create(group);
         assertThat(before.size() + 1, equalTo(app.group().count()));
         Groups after = app.group().all();
-        assertThat(before.withAdded(group.withId(after.stream().mapToInt(GroupData::getId).max().getAsInt())),
-                equalTo(after));
+        assertThat(before.withAdded(group.withId(after.stream().mapToInt(GroupData::getId).max().getAsInt())), equalTo(after));
     }
 
     @Test
