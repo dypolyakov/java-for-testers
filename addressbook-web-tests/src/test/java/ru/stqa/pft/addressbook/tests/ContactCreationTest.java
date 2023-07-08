@@ -28,7 +28,7 @@ public class ContactCreationTest extends TestBase {
     @Test
     public void testContactCreation() {
         Contacts before = app.contact().all();
-        File photo = new File("src/main/resources/Harry Potter.jpg");
+        File photo = new File("src/test/resources/Harry Potter.jpg");
         ContactData contact = new ContactData()
                 .withFirstName("Гарри")
                 .withLastName("Поттер")
