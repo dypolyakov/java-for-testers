@@ -1,0 +1,37 @@
+<list>
+  <ru.stqa.pft.addressbook.model.ContactData>
+    <firstName>FirstName 0</firstName>
+    <lastName>LastName 0</lastName>
+    <address>Address 0</address>
+    <homePhone>+4277976880</homePhone>
+    <firstEmail>email0@email.com</firstEmail>
+  </ru.stqa.pft.addressbook.model.ContactData>
+  <ru.stqa.pft.addressbook.model.ContactData>
+    <firstName>FirstName 1</firstName>
+    <lastName>LastName 1</lastName>
+    <address>Address 1</address>
+    <homePhone>+4277976881</homePhone>
+    <firstEmail>email1@email.com</firstEmail>
+  </ru.stqa.pft.addressbook.model.ContactData>
+  <ru.stqa.pft.addressbook.model.ContactData>
+    <firstName>FirstName 2</firstName>
+    <lastName>LastName 2</lastName>
+    <address>Address 2</address>
+    <homePhone>+4277976882</homePhone>
+    <firstEmail>email2@email.com</firstEmail>
+  </ru.stqa.pft.addressbook.model.ContactData>
+  <ru.stqa.pft.addressbook.model.ContactData>
+    <firstName>FirstName 3</firstName>
+    <lastName>LastName 3</lastName>
+    <address>Address 3</address>
+    <homePhone>+4277976883</homePhone>
+    <firstEmail>email3@email.com</firstEmail>
+  </ru.stqa.pft.addressbook.model.ContactData>
+  <ru.stqa.pft.addressbook.model.ContactData>
+    <firstName>FirstName 4</firstName>
+    <lastName>LastName 4</lastName>
+    <address>Address 4</address>
+    <homePhone>+4277976884</homePhone>
+    <firstEmail>email4@email.com</firstEmail>
+  </ru.stqa.pft.addressbook.model.ContactData>
+</list>
