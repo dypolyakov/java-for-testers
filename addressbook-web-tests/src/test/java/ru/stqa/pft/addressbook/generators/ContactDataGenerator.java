@@ -87,10 +87,10 @@ public class ContactDataGenerator {
 
     private String generatePhoneNumber() {
         Random random = new Random();
-        int areaCode = random.nextInt(1000);
+        int areaCode = random.nextInt(100);
         int prefix = random.nextInt(1000);
         int line1 = random.nextInt(100);
         int line2 = random.nextInt(100);
-        return String.format("+7 %03d %03d %02d %02d", areaCode, prefix, line1, line2);
+        return String.format("+7 9%02d %03d %02d %02d", areaCode, prefix, line1, line2);
     }
 }

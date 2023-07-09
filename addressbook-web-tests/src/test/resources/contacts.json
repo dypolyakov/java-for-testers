@@ -3,7 +3,7 @@
     "firstName": "Гарри 0",
     "lastName": "Поттер 0",
     "address": "Тисовая улица, дом 0",
-    "homePhone": "+7 168 402 80 94",
+    "homePhone": "+7 924 258 45 01",
     "firstEmail": "harry0@potter.com",
     "photo": "src/test/resources/images/harry-potter-0.jpg"
   },
@@ -11,7 +11,7 @@
     "firstName": "Гарри 1",
     "lastName": "Поттер 1",
     "address": "Тисовая улица, дом 1",
-    "homePhone": "+7 001 086 18 86",
+    "homePhone": "+7 929 064 84 38",
     "firstEmail": "harry1@potter.com",
     "photo": "src/test/resources/images/harry-potter-1.jpg"
   },
@@ -19,7 +19,7 @@
     "firstName": "Гарри 2",
     "lastName": "Поттер 2",
     "address": "Тисовая улица, дом 2",
-    "homePhone": "+7 843 007 03 33",
+    "homePhone": "+7 956 451 45 02",
     "firstEmail": "harry2@potter.com",
     "photo": "src/test/resources/images/harry-potter-2.jpg"
   },
@@ -27,7 +27,7 @@
     "firstName": "Гарри 3",
     "lastName": "Поттер 3",
     "address": "Тисовая улица, дом 3",
-    "homePhone": "+7 348 544 97 86",
+    "homePhone": "+7 979 082 38 15",
     "firstEmail": "harry3@potter.com",
     "photo": "src/test/resources/images/harry-potter-3.jpg"
   },
@@ -35,7 +35,7 @@
     "firstName": "Гарри 4",
     "lastName": "Поттер 4",
     "address": "Тисовая улица, дом 4",
-    "homePhone": "+7 587 864 57 19",
+    "homePhone": "+7 949 024 29 15",
     "firstEmail": "harry4@potter.com",
     "photo": "src/test/resources/images/harry-potter-4.jpg"
   }
