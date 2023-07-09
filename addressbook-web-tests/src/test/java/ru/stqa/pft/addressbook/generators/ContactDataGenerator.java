@@ -57,7 +57,6 @@ public class ContactDataGenerator {
                     .withAddress(String.format("Тисовая улица, дом %d", i))
                     .withFirstEmail(String.format("harry%d@potter.com", i))
                     .withHomePhone(generatePhoneNumber())
-                    .withPhoto(new File(String.format("src/test/resources/images/harry-potter-%d.jpg", i)))
             );
         }
         return contacts;
