@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ContactDataGenerator {
     @Parameter(names = "-c", description = "Contact count")
@@ -51,11 +52,12 @@ public class ContactDataGenerator {
         List<ContactData> contacts = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             contacts.add(new ContactData()
-                    .withFirstName(String.format("FirstName %d", i))
-                    .withLastName(String.format("LastName %d", i))
-                    .withAddress(String.format("Address %d", i))
-                    .withFirstEmail(String.format("email%d@email.com", i))
-                    .withHomePhone(String.format("+427797688%d", i))
+                    .withFirstName(String.format("Гарри %d", i))
+                    .withLastName(String.format("Поттер %d", i))
+                    .withAddress(String.format("Тисовая улица, дом %d", i))
+                    .withFirstEmail(String.format("harry%d@potter.com", i))
+                    .withHomePhone(generatePhoneNumber())
+                    .withPhoto(new File(String.format("src/test/resources/images/harry-potter-%d.jpg", i)))
             );
         }
         return contacts;
@@ -76,6 +78,14 @@ public class ContactDataGenerator {
         Writer writer = new FileWriter(file);
         writer.write(json);
         writer.close();
+    }
 
+    private String generatePhoneNumber() {
+        Random random = new Random();
+        int areaCode = random.nextInt(1000);
+        int prefix = random.nextInt(1000);
+        int line1 = random.nextInt(100);
+        int line2 = random.nextInt(100);
+        return String.format("+7 %03d %03d %02d %02d", areaCode, prefix, line1, line2);
     }
 }
