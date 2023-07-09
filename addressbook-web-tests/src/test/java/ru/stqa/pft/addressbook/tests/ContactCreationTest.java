@@ -1,12 +1,18 @@
 package ru.stqa.pft.addressbook.tests;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.io.File;
+import java.io.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -15,6 +21,20 @@ import static org.testng.Assert.*;
 public class ContactCreationTest extends TestBase {
 
     private final String group = "group_test";
+
+    @DataProvider
+    public Iterator<Object[]> validContactsFromJson() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/contacts.json"));
+        String json = "";
+        String line = reader.readLine();
+        while (line != null) {
+            json += line;
+            line = reader.readLine();
+        }
+        Gson gson = new Gson();
+        List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>(){}.getType());
+        return contacts.stream().map((c) -> new Object[]{c}).collect(Collectors.toList()).iterator();
+    }
 
     @BeforeMethod
     public void ensurePreconditions() {
@@ -25,23 +45,11 @@ public class ContactCreationTest extends TestBase {
         app.goTo().homePage();
     }
 
-    @Test
-    public void testContactCreation() {
+    @Test(dataProvider = "validContactsFromJson")
+    public void testContactCreation(ContactData contact) {
         Contacts before = app.contact().all();
-        File photo = new File("src/test/resources/Harry Potter.jpg");
-        ContactData contact = new ContactData()
-                .withFirstName("Гарри")
-                .withLastName("Поттер")
-                .withAddress("Тисовая, 4")
-                .withHomePhone("+42779 768837")
-                .withFirstEmail("harry@potter.com")
-                .withGroup(group)
-                .withPhoto(photo);
-
         app.contact().create(contact);
-
         Contacts after = app.contact().all();
-
         assertEquals(before.size() + 1, after.size());
         assertThat(before.withAdded(contact.withId(after.stream().mapToInt(ContactData::getId).max().getAsInt())),
                 equalTo(after));

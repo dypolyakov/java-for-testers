@@ -1,37 +1,37 @@
 [
   {
-    "firstName": "FirstName 0",
-    "lastName": "LastName 0",
-    "address": "Address 0",
-    "homePhone": "+4277976880",
-    "firstEmail": "email0@email.com"
+    "firstName": "Гарри 0",
+    "lastName": "Поттер 0",
+    "address": "Тисовая улица, дом 0",
+    "homePhone": "+7 372 698 11 64",
+    "firstEmail": "harry0@potter.com"
   },
   {
-    "firstName": "FirstName 1",
-    "lastName": "LastName 1",
-    "address": "Address 1",
-    "homePhone": "+4277976881",
-    "firstEmail": "email1@email.com"
+    "firstName": "Гарри 1",
+    "lastName": "Поттер 1",
+    "address": "Тисовая улица, дом 1",
+    "homePhone": "+7 612 668 95 67",
+    "firstEmail": "harry1@potter.com"
   },
   {
-    "firstName": "FirstName 2",
-    "lastName": "LastName 2",
-    "address": "Address 2",
-    "homePhone": "+4277976882",
-    "firstEmail": "email2@email.com"
+    "firstName": "Гарри 2",
+    "lastName": "Поттер 2",
+    "address": "Тисовая улица, дом 2",
+    "homePhone": "+7 282 879 47 48",
+    "firstEmail": "harry2@potter.com"
   },
   {
-    "firstName": "FirstName 3",
-    "lastName": "LastName 3",
-    "address": "Address 3",
-    "homePhone": "+4277976883",
-    "firstEmail": "email3@email.com"
+    "firstName": "Гарри 3",
+    "lastName": "Поттер 3",
+    "address": "Тисовая улица, дом 3",
+    "homePhone": "+7 269 902 57 67",
+    "firstEmail": "harry3@potter.com"
   },
   {
-    "firstName": "FirstName 4",
-    "lastName": "LastName 4",
-    "address": "Address 4",
-    "homePhone": "+4277976884",
-    "firstEmail": "email4@email.com"
+    "firstName": "Гарри 4",
+    "lastName": "Поттер 4",
+    "address": "Тисовая улица, дом 4",
+    "homePhone": "+7 774 492 19 23",
+    "firstEmail": "harry4@potter.com"
   }
 ]
