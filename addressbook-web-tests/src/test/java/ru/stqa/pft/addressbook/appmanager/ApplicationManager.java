@@ -10,23 +10,23 @@ import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
 
-    private final Browser browser;
+    private final String browser;
     WebDriver driver;
     private GroupHelper groupHelper;
     private NavigationHelper navigationHelper;
     private SessionHelper sessionHelper;
     private ContactHelper contactHelper;
 
-    public ApplicationManager(Browser browser) {
+    public ApplicationManager(String browser) {
         this.browser = browser;
     }
 
     public void init() {
-        if (browser.equals(Browser.FIREFOX)) {
+        if (browser.equals(Browser.FIREFOX.browserName())) {
             driver = new FirefoxDriver();
-        } else if (browser.equals(Browser.CHROME)) {
+        } else if (browser.equals(Browser.CHROME.browserName())) {
             driver = new ChromeDriver();
-        } else if (browser.equals(Browser.SAFARI)) {
+        } else if (browser.equals(Browser.SAFARI.browserName())) {
             driver = new SafariDriver();
         }
 
