@@ -63,7 +63,11 @@ public class ContactData {
     }
 
     public File getPhoto() {
-        return new File(photo);
+        try {
+            return new File(photo);
+        } catch (NullPointerException exception) {
+            return null;
+        }
     }
 
     public int getId() {
