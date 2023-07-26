@@ -7,12 +7,15 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 
 public class ContactHelper extends HelperBase {
+
+    DbHelper db = new DbHelper();
     public ContactHelper(WebDriver driver) {
         super(driver);
     }
@@ -35,6 +38,7 @@ public class ContactHelper extends HelperBase {
         if (creation) {
             if (contactData.getGroups().size() > 0) {
                 assertEquals(contactData.getGroups().size(), 1);
+
                 new Select(driver.findElement(By.name("new_group")))
                         .selectByVisibleText(contactData.getGroups().iterator().next().getName());
             }
@@ -68,9 +72,11 @@ public class ContactHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    public void create(ContactData data) {
+    public void create(ContactData contact) {
+        Groups groups = new DbHelper().groups();
+        contact.inGroup(groups.iterator().next());
         initContactCreation();
-        fillContactForm(data, true);
+        fillContactForm(contact, true);
         submitContactCreation();
         returnToHomePage();
     }

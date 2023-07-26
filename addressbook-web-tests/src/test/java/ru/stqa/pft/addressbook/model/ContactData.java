@@ -141,6 +141,7 @@ public class ContactData {
                 ", secondEmail='" + secondEmail + '\'' +
                 ", thirdEmail='" + thirdEmail + '\'' +
                 ", allEmails='" + allEmails + '\'' +
+                ", groups=" + groups +
                 ", allPhones='" + allPhones + '\'' +
                 '}';
     }
@@ -222,7 +223,8 @@ public class ContactData {
         if (!Objects.equals(lastName, that.lastName)) return false;
         if (!Objects.equals(address, that.address)) return false;
         if (!Objects.equals(homePhone, that.homePhone)) return false;
-        return Objects.equals(firstEmail, that.firstEmail);
+        if (!Objects.equals(firstEmail, that.firstEmail)) return false;
+        return Objects.equals(groups, that.groups);
     }
 
     @Override
@@ -233,6 +235,12 @@ public class ContactData {
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (homePhone != null ? homePhone.hashCode() : 0);
         result = 31 * result + (firstEmail != null ? firstEmail.hashCode() : 0);
+        result = 31 * result + (groups != null ? groups.hashCode() : 0);
         return result;
+    }
+
+    public ContactData inGroup(GroupData group) {
+        groups.add(group);
+        return this;
     }
 }
