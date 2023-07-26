@@ -6,7 +6,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "addressbook")
@@ -49,8 +51,11 @@ public class ContactData {
     private String thirdEmail;
     @Transient
     private String allEmails;
-    @Transient
-    private String group;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "address_in_groups",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id"))
+    private Set<GroupData> groups = new HashSet<>();
     @Transient
     private String allPhones;
     @Expose
@@ -117,8 +122,9 @@ public class ContactData {
     public String getAllEmails() {
         return allEmails;
     }
-    public String getGroup() {
-        return group;
+
+    public Groups getGroups() {
+        return new Groups(groups);
     }
 
     @Override
@@ -135,7 +141,6 @@ public class ContactData {
                 ", secondEmail='" + secondEmail + '\'' +
                 ", thirdEmail='" + thirdEmail + '\'' +
                 ", allEmails='" + allEmails + '\'' +
-                ", group='" + group + '\'' +
                 ", allPhones='" + allPhones + '\'' +
                 '}';
     }
@@ -197,11 +202,6 @@ public class ContactData {
 
     public ContactData withAllEmails(String email) {
         this.allEmails = email;
-        return this;
-    }
-
-    public ContactData withGroup(String group) {
-        this.group = group;
         return this;
     }
 
