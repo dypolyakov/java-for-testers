@@ -22,8 +22,6 @@ import static org.testng.Assert.*;
 
 public class ContactCreationTest extends TestBase {
 
-    private final String group = "group_test";
-
     @DataProvider
     public Iterator<Object[]> validContactsFromJson() throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/contacts.json"))) {
@@ -43,9 +41,9 @@ public class ContactCreationTest extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        if (!app.db().isThereAGroup(group)) {
+        if (app.db().groups().size() == 0) {
             app.goTo().groupPage();
-            app.group().create(new GroupData().withName(group).withHeader("header").withFooter("footer"));
+            app.group().create(new GroupData().withName("group").withHeader("header").withFooter("footer"));
             app.goTo().homePage();
         }
     }
