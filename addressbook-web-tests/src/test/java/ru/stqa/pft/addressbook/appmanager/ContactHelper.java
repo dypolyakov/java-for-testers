@@ -10,6 +10,8 @@ import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.List;
 
+import static org.testng.Assert.assertEquals;
+
 public class ContactHelper extends HelperBase {
     public ContactHelper(WebDriver driver) {
         super(driver);
@@ -31,9 +33,11 @@ public class ContactHelper extends HelperBase {
         type(By.name("email"), contactData.getFirstEmail());
         attach(By.name("photo"), contactData.getPhoto());
         if (creation) {
-//            if (contactData.getGroup() != null) {
-//                new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-//            }
+            if (contactData.getGroups().size() > 0) {
+                assertEquals(contactData.getGroups().size(), 1);
+                new Select(driver.findElement(By.name("new_group")))
+                        .selectByVisibleText(contactData.getGroups().iterator().next().getName());
+            }
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
