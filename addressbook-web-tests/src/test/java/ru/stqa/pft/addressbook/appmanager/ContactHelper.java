@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.List;
@@ -67,6 +68,10 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//a[@href='edit.php?id=" + id + "']/img"));
     }
 
+    public void selectGroup() {
+
+    }
+
 
     public void submitContactModification() {
         click(By.name("update"));
@@ -75,6 +80,13 @@ public class ContactHelper extends HelperBase {
     public void create(ContactData contact) {
         Groups groups = new DbHelper().groups();
         contact.inGroup(groups.iterator().next());
+        initContactCreation();
+        fillContactForm(contact, true);
+        submitContactCreation();
+        returnToHomePage();
+    }
+
+    public void createWithoutGroup(ContactData contact) {
         initContactCreation();
         fillContactForm(contact, true);
         submitContactCreation();
@@ -93,6 +105,12 @@ public class ContactHelper extends HelperBase {
         deleteSelectedContacts();
         acceptAlert();
         returnToHomePage();
+    }
+
+    public void addToGroup(ContactData contact, GroupData group) {
+        selectContact(contact.getId());
+        new Select(driver.findElement(By.name("to_group"))).selectByVisibleText(group.getName());
+        click(By.name("add"));
     }
 
     public Contacts all() {
@@ -146,5 +164,28 @@ public class ContactHelper extends HelperBase {
                 .withFirstEmail(firstEmail)
                 .withSecondEmail(secondEmail)
                 .withThirdEmail(thirdEmail);
+    }
+
+    public ContactData findAvailableContactToAddGroup() {
+        // Получить список всех контактов
+        Contacts contacts = db.contacts();
+        // Получить список всех групп
+        Groups groups = db.groups();
+        ContactData availableContact = null;
+
+        // Найти контакт, который можно добавить в группу
+        for (ContactData contact : contacts) {
+            // Получить список групп выбранного контакта
+            Groups contactGroups = contact.getGroups();
+            // Если контакт добавлен во все существующие группы - взять следующий контакт
+            if (contactGroups.size() == groups.size()) {
+                continue;
+            }
+            // Если контакт можно добавить хоть в одну группу - вернуть этот контакт и завершить цикл
+            availableContact = contact;
+            break;
+        }
+        // Вернуть доступный для добавления в группу контакт или значение null
+        return availableContact;
     }
 }
