@@ -68,10 +68,6 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//a[@href='edit.php?id=" + id + "']/img"));
     }
 
-    public void selectGroup() {
-
-    }
-
 
     public void submitContactModification() {
         click(By.name("update"));
@@ -111,6 +107,12 @@ public class ContactHelper extends HelperBase {
         selectContact(contact.getId());
         new Select(driver.findElement(By.name("to_group"))).selectByVisibleText(group.getName());
         click(By.name("add"));
+    }
+
+    public void removeContactFromGroup(ContactData contact, GroupData group) {
+        new Select(driver.findElement(By.name("group"))).selectByVisibleText(group.getName());
+        selectContact(contact.getId());
+        click(By.name("remove"));
     }
 
     public Contacts all() {
@@ -188,4 +190,23 @@ public class ContactHelper extends HelperBase {
         // Вернуть доступный для добавления в группу контакт или значение null
         return availableContact;
     }
+
+    public ContactData contactWithAddedGroup() {
+        // Получить список всех контактов
+        Contacts contacts = db.contacts();
+
+        // Найти добавленный в группу контакт
+        for (ContactData contact : contacts) {
+            // Получить список групп выбранного контакта
+            Groups contactGroups = contact.getGroups();
+            // Если контакт добавлен в группу то вернуть контакт
+            if (contactGroups.size() != 0) {
+                return contact;
+            }
+        }
+        // Если ни один контакт не имеет группу, то вернуть
+        return null;
+    }
+
+
 }
