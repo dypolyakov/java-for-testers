@@ -243,4 +243,9 @@ public class ContactData {
         groups.add(group);
         return this;
     }
+
+    public ContactData withGroups(Groups groupsToAdd) {
+        groups.addAll(groupsToAdd);
+        return this;
+    }
 }

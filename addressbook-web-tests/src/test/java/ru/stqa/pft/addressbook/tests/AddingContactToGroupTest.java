@@ -1,7 +1,5 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -9,7 +7,6 @@ import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
-import java.util.Iterator;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -73,6 +70,7 @@ public class AddingContactToGroupTest extends TestBase {
         GroupData availableGroup = availableGroups.iterator().next();
 
         // Добавить доступный контакт в доступную для него группу
+        app.goTo().homePage();
         app.contact().addToGroup(availableContact, availableGroup);
 
         // Получить список групп контакта после добавления его в группу
